@@ -7,7 +7,7 @@ export async function getVideo() {
   try {
     video.srcObject = avStream;
   } catch (error) {
-    // old brwosers
+    // old browsers
     video.src = window.URL.createObjectURL(avStream);
   }
   await video.play();
