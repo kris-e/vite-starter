@@ -1,17 +1,17 @@
 import { getThemeToggle  } from "./src/theme.js";
 import { getVideo, drawVideo } from "./src/camera.js";
 import { drawText } from "./src/text.js";
-import { getImage } from "./src/image.js";
+import { getImage, drawImg } from "./src/image.js";
 import { Modal } from "./src/modal.js";
 
 const memeCanvas = document.getElementById("meme");
 
 // Create unattached canvas elements
 // to serve as "layers" of the meme
+const imageLayer = document.createElement("canvas");
 const selfieLayer = document.createElement("canvas");
 const textLayer = document.createElement("canvas");
-const imageLayer = document.createElement("canvas");
-for (let canvas of [selfieLayer, textLayer, imageLayer]) {
+for (let canvas of [imageLayer, selfieLayer, textLayer]) {
   canvas.width = memeCanvas.width;
   canvas.height = memeCanvas.height;
 }
@@ -55,7 +55,7 @@ function setupAddText() {
   textModal.render();
 }
 
-async function setupAddImage() {
+function setupAddImage() {
   const imgInputs = document.getElementById("add-img");
   const saveImgBtn = document.getElementById("save-img");
 
@@ -70,9 +70,10 @@ async function setupAddImage() {
   const image = getImage(previewImg);
 
   saveImgBtn.addEventListener("click", () => {
-    getImage(image, imageLayer);
+    drawImg(image, imageLayer);
     redrawMeme;
   })
+  
 }
 
 async function setupTakeSelfie() {

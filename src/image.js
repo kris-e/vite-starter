@@ -1,32 +1,38 @@
-export function getImage(canvas) {
+export function getImage() {
+  const canvas = document.getElementById("preview-img");
   const context = canvas.getContext("2d");
+  const input = document.getElementById("get-image");
+  const image = new Image();
 
-  const upload = document.getElementById("get-image");
+  // Clear any previous image
+  context.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Clear any previous text
-  // context.clearRect(0, 0, canvas.width, canvas.height);
-
-  function readImg() {
-    const fileRead = new FileReader();
-
-    fileRead.addEventListener("load", (e) =>{
-      const image = new Image();
-      image.addEventListener("load", () => {
-        // Clear any previous image
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(image, 0, 0);
-      })
-      image.src = e.target.result
-    });
-    fileRead.readAsDataURL(this.files[0]);
-  }
-  upload.addEventListener("change", readImg);
-
+    input.onchange = function() {
+      // const image = new Image();
+      image.onload = function() {
+        const context = canvas.getContext("2d");
+        canvas.width = this.width;
+        canvas.height = this.height;
+        context.drawImage(this, 0, 0);
+      }
+      image.src = URL.createObjectURL(this.files[0])
+    }
+  image.onload = drawImg;
+  return image;
 }
 
-// export function drawImg(image, canvas) {
-//   const context = canvas.getContext("2d");
-//   canvas.width = image.imageWidth;
-//   canvas.height = image.imageHeight;
-//   context.drawImage(image, 0, 0, image.videoWidth, image.videoHeight);
-// }
+export function drawImg(image, canvas) {
+  // const canvas = document.getElementById("meme");
+  canvas.width = image.width;
+  canvas.height = image.height;
+  const context = canvas.getContext("2d");
+  // context.putImageData(image, 0, 0);
+
+  context.drawImage(
+    image, 
+    0, 
+    0, 
+    image.imageWidth, 
+    image.imageHeight
+    );
+}
