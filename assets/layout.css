@@ -81,6 +81,14 @@ footer > * {
   text-align: left;
 }
 
+input[type="file"]{
+  display: none;
+}
+
+input[type=file]::file-selector-button {
+  display: none;
+}
+
 main > video,
 main > canvas,
 #meme {

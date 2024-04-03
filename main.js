@@ -1,7 +1,7 @@
 import { getThemeToggle  } from "./src/theme.js";
 import { getVideo, drawVideo } from "./src/camera.js";
 import { drawText } from "./src/text.js";
-import { getImage, drawImg } from "./src/image.js";
+import { getImage} from "./src/image.js";
 import { Modal } from "./src/modal.js";
 
 const memeCanvas = document.getElementById("meme");
@@ -56,24 +56,7 @@ function setupAddText() {
 }
 
 function setupAddImage() {
-  const imgInputs = document.getElementById("add-img");
-  const saveImgBtn = document.getElementById("save-img");
-
-  const imgModal = new Modal(
-    "Add an image",
-    imgInputs,
-    imgInputs.querySelector(".modal-content")
-  );
-  imgModal.render();
-
-  const previewImg = document.getElementById("preview-img");
-  const image = getImage(previewImg);
-
-  saveImgBtn.addEventListener("click", () => {
-    drawImg(image, imageLayer);
-    redrawMeme;
-  })
-  
+  getImage();
 }
 
 async function setupTakeSelfie() {
