@@ -91,7 +91,7 @@ async function setupShareMeme() {
   );
   downloadPhotoModal.render();
 
-  shareButton.addEventListener("click", () => {
+  shareButton.addEventListener("click", async () => {
     if (navigator.share) {
       try {
         const base64url = document.getElemenentbyId("meme").toDataURL();
@@ -100,7 +100,7 @@ async function setupShareMeme() {
 
         await navigator.share ({
           title: "My meme",
-          text: "Look at my meme!"
+          text: "Look at my meme!",
           files: [file],
         });
       } catch (error) {
@@ -115,6 +115,6 @@ async function setupShareMeme() {
   setupSettings();
   setupAddText();
   setupAddImage();
-  setupShareMeme();
   await setupTakeSelfie();
+  setupShareMeme();
 })();
