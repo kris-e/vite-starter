@@ -85,22 +85,22 @@ async function setupShareMeme() {
   const shareButton = document.getElementById("share-meme");
 
   const downloadPhotoModal = new Modal(
-    "Share Meme",
+    "Share Image",
     downloadPhoto,
     downloadPhoto.querySelector(".modal-content")
   );
   downloadPhotoModal.render();
 
-  shareButton.addEventListener("click", async () => {
+  shareButton.addEventListener('click', async () => {
     if (navigator.share) {
       try {
-        const base64url = document.getElemenentbyId("meme").toDataURL();
-        const blob = await (await fetch (base64url)).blob();
-        const file = new File([blob], "meme.png", { type: blob.type });
+        const base64url = document.getElementById('meme').toDataURL();
+        const blob = await (await fetch(base64url)).blob();
+        const file = new File([blob], 'meme.png', { type: blob.type });
 
-        await navigator.share ({
-          title: "My meme",
-          text: "Look at my meme!",
+        await navigator.share({
+          title: 'Meme',
+          text: 'Look at my meme!',
           files: [file],
         });
       } catch (error) {
@@ -109,6 +109,7 @@ async function setupShareMeme() {
     }
   });
 }
+
 
 // IIFE (immediately invoked function expression) in case we don't have top-level await
 (async function run() {
