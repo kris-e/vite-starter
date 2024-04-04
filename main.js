@@ -81,15 +81,15 @@ async function setupTakeSelfie() {
 }
 
 async function setupShareMeme() {
-  // const downloadPhoto = document.getElementById("download-photo");
+  const downloadPhoto = document.getElementById("download-photo");
   const shareButton = document.getElementById("share-meme");
 
-  // const downloadPhotoModal = new Modal(
-  //   "Share Image",
-  //   downloadPhoto,
-  //   downloadPhoto.querySelector(".modal-content")
-  // );
-  // downloadPhotoModal.render();
+  const downloadPhotoModal = new Modal(
+    "Share Image",
+    downloadPhoto,
+    downloadPhoto.querySelector(".modal-content")
+  );
+  downloadPhotoModal.render();
 
   shareButton.addEventListener('click', async () => {
     if (navigator.share) {
