@@ -80,10 +80,41 @@ async function setupTakeSelfie() {
   })
 }
 
+async function setupShareMeme() {
+  const downloadPhoto = document.getElementById("download-photo");
+  const shareButton = document.getElementById("share-meme");
+
+  const downloadPhotoModal = new Modal(
+    "Share Meme",
+    downloadPhoto,
+    downloadPhoto.querySelector(".modal-content")
+  );
+  downloadPhotoModal.render();
+
+  shareButton.addEventListener("click", () => {
+    if (navigator.share) {
+      try {
+        const base64url = document.getElemenentbyId("meme").toDataURL();
+        const blob = await (await fetch (base64url)).blob();
+        const file = new File([blob], "meme.png", { type: blob.type });
+
+        await navigator.share ({
+          title: "My meme",
+          text: "Look at my meme!"
+          files: [file],
+        });
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  });
+}
+
 // IIFE (immediately invoked function expression) in case we don't have top-level await
 (async function run() {
   setupSettings();
   setupAddText();
   setupAddImage();
+  setupShareMeme();
   await setupTakeSelfie();
 })();
