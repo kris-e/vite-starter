@@ -14,7 +14,7 @@
   --outline-width: 3px;
   --spacing: 1rem;
   --typography-spacing-vertical: 1.5rem;
-  --block-spacing-vertical: calc(var(--spacing) * 2);
+  --block-spacing-vertical: calc(var(--spacing) * .5);
   --block-spacing-horizontal: var(--spacing);
   --grid-spacing-vertical: 0;
   --grid-spacing-horizontal: var(--spacing);
@@ -53,7 +53,7 @@
   body > main,
   body > footer,
   section {
-    --block-spacing-vertical: calc(var(--spacing) * 2.5);
+    --block-spacing-vertical: calc(var(--spacing) * .5);
   }
 }
 @media (min-width: 768px) {
@@ -82,7 +82,7 @@
 }
 @media (min-width: 576px) {
   article {
-    --block-spacing-horizontal: calc(var(--spacing) * 1.25);
+    --block-spacing-horizontal: calc(var(--spacing) * .25);
   }
 }
 @media (min-width: 768px) {
