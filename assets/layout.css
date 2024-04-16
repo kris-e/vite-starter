@@ -13,6 +13,13 @@ body.grid {
   grid-template-rows: max-content 2fr 1fr max-content;
 }
 
+@media (min-width: 576px) {
+  :root {
+    --header-height: 2em;
+    --footer-height: 1em;
+  }
+}
+
 @media (min-width: 768px) {
   :root {
     --header-height: 3em;
